@@ -34,18 +34,12 @@
 
 #define SIMSLOT_FILE "/proc/simslot_count"
 
-#include <init_msm8916.h>
 
-using android::base::GetProperty;
-using android::base::ReadFileToString;
-using android::base::Trim;
+
+
 
 #define SERIAL_NUMBER_FILE "/efs/FactoryApp/serial_no"
 
-__attribute__ ((weak))
-void init_target_properties()
-{
-}
 
 void property_override(char const prop[], char const value[])
 {
@@ -180,10 +174,4 @@ void set_target_properties(const char *device, const char *model)
         	serial_number = Trim(serial_number);
         	property_override("ro.serialno", serial_number.c_str());
 	}
-}
-
-void vendor_load_properties(void)
-{
-	/* set the device properties */
-	init_target_properties();
 }
